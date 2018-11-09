@@ -1,10 +1,16 @@
 Microsoft Windows [版本 10.0.17134.345]
 (c) 2018 Microsoft Corporation。保留所有权利。
 
+C:\WINDOWS\system32>net start mysql80
+请求的服务已经启动。
+
+请键入 NET HELPMSG 2182 以获得更多的帮助。
+
+
 C:\WINDOWS\system32>mysql -u root -p
-Enter password: ********
+Enter password: ******
 Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 12
+Your MySQL connection id is 19
 Server version: 8.0.12 MySQL Community Server - GPL
 
 Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
@@ -15,102 +21,232 @@ owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-mysql> create database shoppingcar;
-Query OK, 1 row affected (0.06 sec)
-
-mysql> use shoppingcar;
+mysql> use haha;
 Database changed
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| car                |
-| information_schema |
-| langlang           |
-| m                  |
-| mu                 |
-| mysql              |
-| performance_schema |
-| shop               |
-| shoppingcar        |
-| sys                |
-| wy                 |
-| wy1                |
-+--------------------+
-12 rows in set (0.00 sec)
+mysql> select * from emp;
++-------+--------+-----------+------+------------+------+---------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM    | DEPTNO |
++-------+--------+-----------+------+------------+------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980/12/17 |  800 |         | 20     |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981/2/20  | 1600 | 300.00  | 30     |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981/2/22  | 1250 | 500.00  | 30     |
+|  7566 | JONES  | MANAGER   | 7839 | 1981/4/2   | 2975 |         | 20     |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981/9/28  | 1250 | 1400.00 | 30     |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981/5/1   | 2850 |         | 30     |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981/6/9   | 2450 |         | 10     |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987/4/19  | 3000 |         | 20     |
+|  7839 | KING   | PRESIDENT |      | 1981/11/17 | 5000 |         | 10     |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981/9/8   | 1500 | 0.00    | 30     |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987/5/23  | 1100 |         | 20     |
+|  7900 | JAMES  | CLERK     | 7698 | 1981/12/3  |  950 |         | 30     |
+|  7902 | FORD   | ANALYST   | 7566 | 1981/12/3  | 3000 |         | 20     |
+|  7934 | MILLER | CLERK     | 7782 | 1982/1/23  | 1300 |         | 10     |
++-------+--------+-----------+------+------------+------+---------+--------+
+14 rows in set (0.00 sec)
 
-mysql> create table shopping(id int(11) primary key not null auto_increment,name varchar(20) not null,num int(3) default 1);
-Query OK, 0 rows affected (0.08 sec)
+mysql> select distinct job from emp;
++-----------+
+| job       |
++-----------+
+| CLERK     |
+| SALESMAN  |
+| MANAGER   |
+| ANALYST   |
+| PRESIDENT |
++-----------+
+5 rows in set (0.00 sec)
 
-mysql> desc shopping;
-+-------+-------------+------+-----+---------+----------------+
-| Field | Type        | Null | Key | Default | Extra          |
-+-------+-------------+------+-----+---------+----------------+
-| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
-| name  | varchar(20) | NO   |     | NULL    |                |
-| num   | int(3)      | YES  |     | 1       |                |
-+-------+-------------+------+-----+---------+----------------+
-3 rows in set (0.01 sec)
+mysql> select sal from emp;
++------+
+| sal  |
++------+
+|  800 |
+| 1600 |
+| 1250 |
+| 2975 |
+| 1250 |
+| 2850 |
+| 2450 |
+| 3000 |
+| 5000 |
+| 1500 |
+| 1100 |
+|  950 |
+| 3000 |
+| 1300 |
++------+
+14 rows in set (0.00 sec)
 
-mysql> alter table shopping add love varchar(6) not null;
-Query OK, 0 rows affected (0.13 sec)
-Records: 0  Duplicates: 0  Warnings: 0
+mysql> select sal from emp where sal>1000 and sal<3000;
++------+
+| sal  |
++------+
+| 1600 |
+| 1250 |
+| 2975 |
+| 1250 |
+| 2850 |
+| 2450 |
+| 1500 |
+| 1100 |
+| 1300 |
++------+
+9 rows in set (0.00 sec)
 
-mysql> alter table shopping add discount varchar(10) not null;
-Query OK, 0 rows affected (0.06 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> alter table shopping add wishes varchar(30
-    -> ;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
-mysql> alter table shopping add wishes vaechar(30) not null;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vaechar(30) not null' at line 1
-mysql> alter table shopping add wishes vaechar(15) not null;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vaechar(15) not null' at line 1
-mysql> alter table shopping add wishes varchar(15) not null;
-Query OK, 0 rows affected (0.10 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> desc shopping;
-+----------+-------------+------+-----+---------+----------------+
-| Field    | Type        | Null | Key | Default | Extra          |
-+----------+-------------+------+-----+---------+----------------+
-| id       | int(11)     | NO   | PRI | NULL    | auto_increment |
-| name     | varchar(20) | NO   |     | NULL    |                |
-| num      | int(3)      | YES  |     | 1       |                |
-| love     | varchar(6)  | NO   |     | NULL    |                |
-| discount | varchar(10) | NO   |     | NULL    |                |
-| wishes   | varchar(15) | NO   |     | NULL    |                |
-+----------+-------------+------+-----+---------+----------------+
-6 rows in set (0.00 sec)
-
-mysql> insert into shopping (id,name,num,love,discount,wishes)values(1,'wangying','10','tie','3','buy tie');
-Query OK, 1 row affected (0.06 sec)
-
-mysql> insert into shopping (name,num,love,discount,wishes)values('wangyue',null,'water','5','buy'),('wangle',null,'eat','2','play');
-Query OK, 2 rows affected (0.06 sec)
-Records: 2  Duplicates: 0  Warnings: 0
-
-mysql> select * from shopping;
-+----+----------+------+-------+----------+---------+
-| id | name     | num  | love  | discount | wishes  |
-+----+----------+------+-------+----------+---------+
-|  1 | wangying |   10 | tie   | 3        | buy tie |
-|  2 | wangyue  | NULL | water | 5        | buy     |
-|  3 | wangle   | NULL | eat   | 2        | play    |
-+----+----------+------+-------+----------+---------+
+mysql> select sal from emp order by sal limit 3,3;
++------+
+| sal  |
++------+
+| 1250 |
+| 1250 |
+| 1300 |
++------+
 3 rows in set (0.00 sec)
 
-mysql> delete from shopping where id=1;
-Query OK, 1 row affected (0.07 sec)
+mysql> select sal from emp order by sal;
++------+
+| sal  |
++------+
+|  800 |
+|  950 |
+| 1100 |
+| 1250 |
+| 1250 |
+| 1300 |
+| 1500 |
+| 1600 |
+| 2450 |
+| 2850 |
+| 2975 |
+| 3000 |
+| 3000 |
+| 5000 |
++------+
+14 rows in set (0.00 sec)
 
-mysql> select * from shopping;
-+----+---------+------+-------+----------+--------+
-| id | name    | num  | love  | discount | wishes |
-+----+---------+------+-------+----------+--------+
-|  2 | wangyue | NULL | water | 5        | buy    |
-|  3 | wangle  | NULL | eat   | 2        | play   |
-+----+---------+------+-------+----------+--------+
-2 rows in set (0.00 sec)
+mysql> select sal,count(sal) from emp group by sal;
++------+------------+
+| sal  | count(sal) |
++------+------------+
+|  800 |          1 |
+| 1600 |          1 |
+| 1250 |          2 |
+| 2975 |          1 |
+| 2850 |          1 |
+| 2450 |          1 |
+| 3000 |          2 |
+| 5000 |          1 |
+| 1500 |          1 |
+| 1100 |          1 |
+|  950 |          1 |
+| 1300 |          1 |
++------+------------+
+12 rows in set (0.00 sec)
+
+mysql> select sal,count(sal),deptno,count(deptno)from emp group by sal,deptno with rollup;
++------+------------+--------+---------------+
+| sal  | count(sal) | deptno | count(deptno) |
++------+------------+--------+---------------+
+|  800 |          1 | 20     |             1 |
+|  800 |          1 | NULL   |             1 |
+|  950 |          1 | 30     |             1 |
+|  950 |          1 | NULL   |             1 |
+| 1100 |          1 | 20     |             1 |
+| 1100 |          1 | NULL   |             1 |
+| 1250 |          2 | 30     |             2 |
+| 1250 |          2 | NULL   |             2 |
+| 1300 |          1 | 10     |             1 |
+| 1300 |          1 | NULL   |             1 |
+| 1500 |          1 | 30     |             1 |
+| 1500 |          1 | NULL   |             1 |
+| 1600 |          1 | 30     |             1 |
+| 1600 |          1 | NULL   |             1 |
+| 2450 |          1 | 10     |             1 |
+| 2450 |          1 | NULL   |             1 |
+| 2850 |          1 | 30     |             1 |
+| 2850 |          1 | NULL   |             1 |
+| 2975 |          1 | 20     |             1 |
+| 2975 |          1 | NULL   |             1 |
+| 3000 |          2 | 20     |             2 |
+| 3000 |          2 | NULL   |             2 |
+| 5000 |          1 | 10     |             1 |
+| 5000 |          1 | NULL   |             1 |
+| NULL |         14 | NULL   |            14 |
++------+------------+--------+---------------+
+25 rows in set (0.03 sec)
+
+mysql> select * from dept;
++--------+------------+----------+
+| DEPTNO | DNAME      | LOC      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
+|     40 | OPERATIONS | BOSTON   |
++--------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp left join dept on emp.deptno=dept.deptno;
++-------+--------+-----------+------+------------+------+---------+--------+--------+------------+----------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM    | DEPTNO | DEPTNO | DNAME      | LOC      |
++-------+--------+-----------+------+------------+------+---------+--------+--------+------------+----------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980/12/17 |  800 |         | 20     |     20 | RESEARCH   | DALLAS   |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981/2/20  | 1600 | 300.00  | 30     |     30 | SALES      | CHICAGO  |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981/2/22  | 1250 | 500.00  | 30     |     30 | SALES      | CHICAGO  |
+|  7566 | JONES  | MANAGER   | 7839 | 1981/4/2   | 2975 |         | 20     |     20 | RESEARCH   | DALLAS   |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981/9/28  | 1250 | 1400.00 | 30     |     30 | SALES      | CHICAGO  |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981/5/1   | 2850 |         | 30     |     30 | SALES      | CHICAGO  |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981/6/9   | 2450 |         | 10     |     10 | ACCOUNTING | NEW YORK |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987/4/19  | 3000 |         | 20     |     20 | RESEARCH   | DALLAS   |
+|  7839 | KING   | PRESIDENT |      | 1981/11/17 | 5000 |         | 10     |     10 | ACCOUNTING | NEW YORK |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981/9/8   | 1500 | 0.00    | 30     |     30 | SALES      | CHICAGO  |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987/5/23  | 1100 |         | 20     |     20 | RESEARCH   | DALLAS   |
+|  7900 | JAMES  | CLERK     | 7698 | 1981/12/3  |  950 |         | 30     |     30 | SALES      | CHICAGO  |
+|  7902 | FORD   | ANALYST   | 7566 | 1981/12/3  | 3000 |         | 20     |     20 | RESEARCH   | DALLAS   |
+|  7934 | MILLER | CLERK     | 7782 | 1982/1/23  | 1300 |         | 10     |     10 | ACCOUNTING | NEW YORK |
++-------+--------+-----------+------+------------+------+---------+--------+--------+------------+----------+
+14 rows in set (0.00 sec)
+
+mysql> select * from emp where emp.deptno in(select deptno from dept);
++-------+--------+-----------+------+------------+------+---------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM    | DEPTNO |
++-------+--------+-----------+------+------------+------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980/12/17 |  800 |         | 20     |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981/2/20  | 1600 | 300.00  | 30     |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981/2/22  | 1250 | 500.00  | 30     |
+|  7566 | JONES  | MANAGER   | 7839 | 1981/4/2   | 2975 |         | 20     |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981/9/28  | 1250 | 1400.00 | 30     |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981/5/1   | 2850 |         | 30     |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981/6/9   | 2450 |         | 10     |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987/4/19  | 3000 |         | 20     |
+|  7839 | KING   | PRESIDENT |      | 1981/11/17 | 5000 |         | 10     |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981/9/8   | 1500 | 0.00    | 30     |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987/5/23  | 1100 |         | 20     |
+|  7900 | JAMES  | CLERK     | 7698 | 1981/12/3  |  950 |         | 30     |
+|  7902 | FORD   | ANALYST   | 7566 | 1981/12/3  | 3000 |         | 20     |
+|  7934 | MILLER | CLERK     | 7782 | 1982/1/23  | 1300 |         | 10     |
++-------+--------+-----------+------+------------+------+---------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select * from emp where exists(select * from dept);
++-------+--------+-----------+------+------------+------+---------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM    | DEPTNO |
++-------+--------+-----------+------+------------+------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980/12/17 |  800 |         | 20     |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981/2/20  | 1600 | 300.00  | 30     |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981/2/22  | 1250 | 500.00  | 30     |
+|  7566 | JONES  | MANAGER   | 7839 | 1981/4/2   | 2975 |         | 20     |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981/9/28  | 1250 | 1400.00 | 30     |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981/5/1   | 2850 |         | 30     |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981/6/9   | 2450 |         | 10     |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987/4/19  | 3000 |         | 20     |
+|  7839 | KING   | PRESIDENT |      | 1981/11/17 | 5000 |         | 10     |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981/9/8   | 1500 | 0.00    | 30     |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987/5/23  | 1100 |         | 20     |
+|  7900 | JAMES  | CLERK     | 7698 | 1981/12/3  |  950 |         | 30     |
+|  7902 | FORD   | ANALYST   | 7566 | 1981/12/3  | 3000 |         | 20     |
+|  7934 | MILLER | CLERK     | 7782 | 1982/1/23  | 1300 |         | 10     |
++-------+--------+-----------+------+------------+------+---------+--------+
+14 rows in set (0.00 sec)
 
 mysql>
